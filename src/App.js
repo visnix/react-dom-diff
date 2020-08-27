@@ -1,26 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+import Shape from './Shape';
+import shapesImage from './shapes.png';
 
-function App() {
+export default function App() {
+
+  const shapesList = [
+    'shape1',
+    'shape2',
+    'shape3',
+    'shape4',
+    'shape5',
+    'shape6',
+    'clear'
+  ]
+  const [shape, updateShape] = useState(null);
+
+  useEffect(() => () => console.log('======================'), [shape]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {
+        shapesList.map((item, index) => 
+          <button
+            key={item}
+            onClick={() => {updateShape(item);}}
+          >
+            {item}
+          </button>
+        )
+      }
+      <Shape shape={shape} />
+      <img src={shapesImage} alt="shapes"/>
     </div>
-  );
+  )
 }
-
-export default App;
