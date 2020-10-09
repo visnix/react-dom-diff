@@ -1,7 +1,7 @@
 import React, { Component, useEffect } from 'react';
 import './create-react-component-node.css'
 
-function createReactComponentNode(name) {
+function createReactClassComponentNode(name) {
   class ReactComponentNode extends Component {
     constructor(props) {
       super(props);
@@ -19,13 +19,13 @@ function createReactComponentNode(name) {
       console.log(name + ' is updated.');
     }
 
-    shouldComponentUpdate(nextProps, nextState) {
-      if(this.props.testProps !== nextProps.testProps) {
-        return true
-      } else {
-        return false
-      }
-    }
+    // shouldComponentUpdate(nextProps, nextState) {
+    //   if(this.props.testProps !== nextProps.testProps) {
+    //     return true
+    //   } else {
+    //     return false
+    //   }
+    // }
     
     render() {
       return (
@@ -61,6 +61,6 @@ function createReactFunctionComponentNode(name) {
 
 }
 
-export default createReactComponentNode;
+export default createReactClassComponentNode;
 // export default createReactFunctionComponentNode;
 
