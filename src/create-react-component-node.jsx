@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect } from 'react';
 import './create-react-component-node.css'
 
-export default function createReactComponentNode(name) {
+function createReactComponentNode(name) {
   class ReactComponentNode extends Component {
     constructor(props) {
       super(props);
@@ -18,6 +18,14 @@ export default function createReactComponentNode(name) {
     componentDidUpdate() {
       console.log(name + ' is updated.');
     }
+
+    shouldComponentUpdate(nextProps, nextState) {
+      if(this.props.testProps !== nextProps.testProps) {
+        return true
+      } else {
+        return false
+      }
+    }
     
     render() {
       return (
@@ -29,3 +37,30 @@ export default function createReactComponentNode(name) {
   }
   return ReactComponentNode
 }
+
+function createReactFunctionComponentNode(name) {
+  function ReactComponentNode(props) {
+    console.log(name + '---> is created.');
+  
+    useEffect(() => {
+      console.log(name + '--->1 is updated.');
+      return () => {
+        console.log(name + '--->1 will unmount.');
+      }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [props])
+  
+    return (
+      <div className={'node ' + name} data-name={name}>
+        {props.children}
+      </div>
+    )
+  }
+
+  return ReactComponentNode
+
+}
+
+export default createReactComponentNode;
+// export default createReactFunctionComponentNode;
+

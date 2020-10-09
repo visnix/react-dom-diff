@@ -14,8 +14,9 @@ export default function App() {
     'clear'
   ]
   const [shape, updateShape] = useState(null);
+  const [forceState, forceUpdate] = useState(1);
 
-  useEffect(() => () => console.log('======================'), [shape]);
+  useEffect(() => () => console.log('======================'), [shape, forceState]);
 
   return (
     <div>
@@ -23,7 +24,7 @@ export default function App() {
         shapesList.map((item, index) => 
           <button
             key={item}
-            onClick={() => {updateShape(item);}}
+            onClick={() => {forceUpdate(Math.random());updateShape(item);}}
           >
             {item}
           </button>
